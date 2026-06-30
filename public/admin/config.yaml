@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select", options: ["review", "hardware", "news", "guide", "esports"] }
+      - { label: "Platform", name: "platform", widget: "select", options: ["PC", "PS5", "Switch", "Xbox"] }
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Status", name: "status", widget: "select", options: ["completed", "in-progress", "backlog", "abandoned"] }
+      - { label: "Score", name: "score", widget: "number", value_type: "int", min: 1, max: 10 }
+      - { label: "Genre", name: "genre", widget: "list" }
+      - { label: "Cover Image", name: "cover_image", widget: "image" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "timeline"
+    label: "Timeline"
+    folder: "content/timeline"
+    create: true
+    slug: "{{year}}"
+    fields:
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Label", name: "label", widget: "string" }
+      - { label: "Icon Image", name: "icon_image", widget: "image" }
+      - { label: "Related Posts", name: "related_posts", widget: "list", max: 3, field: { label: "Post Slug", name: "slug", widget: "string" } }
